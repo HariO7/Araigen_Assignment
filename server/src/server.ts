@@ -1,7 +1,8 @@
-import Express, { Application } from "express";
+import Express, { Application, Router } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import truckDriverRouter from "./routes/truckDrivers.route";
 
 const app: Application = Express();
 const bodyParser = Express.json;
@@ -17,10 +18,11 @@ mongoose.connect(db_connection).then(() => {
   console.log(`[Database]:Connected`);
 });
 
+//Routes
+app.use(truckDriverRouter);
 
 // server
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`[Server]: server started on port ${port}`);
 });
-  

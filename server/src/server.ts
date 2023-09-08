@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import truckDriverRouter from "./routes/truckDrivers.route";
+import VendorRouter from "./routes/Vendor.route";
 
 const app: Application = Express();
 const bodyParser = Express.json;
@@ -20,6 +21,7 @@ mongoose.connect(db_connection).then(() => {
 
 //Routes
 app.use(truckDriverRouter);
+app.use(VendorRouter)
 
 // server
 const port = process.env.PORT;

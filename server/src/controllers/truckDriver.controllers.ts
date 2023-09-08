@@ -16,7 +16,13 @@ export const getTruckDriver = async (req: Request, res: Response) => {
   try {
     const driverId = req.params.id;
     const truckDriver = await TruckDriverModal.findById(driverId);
-    return res.status(200).json({ data: truckDriver });
+    if (truckDriver) {
+      return res.status(200).json({ data: truckDriver });
+    } else {
+      return res
+        .status(404)
+        .json({ message: "Truck Driver Not found with specified id" });
+    }
   } catch (error) {
     return res.status(400).json({ error });
   }
